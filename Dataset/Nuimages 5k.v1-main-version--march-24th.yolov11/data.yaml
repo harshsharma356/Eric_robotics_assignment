@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 8
+names: ['human-pedestrian-adult', 'movable_object-barrier', 'movable_object-trafficcone', 'vehicle-bicycle', 'vehicle-bus-rigid', 'vehicle-car', 'vehicle-motorcycle', 'vehicle-truck']
+
+roboflow:
+  workspace: new-workspace-hbhr7
+  project: nuimages-5k
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/new-workspace-hbhr7/nuimages-5k/dataset/1

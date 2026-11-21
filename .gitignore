@@ -1,0 +1,6 @@
+
+# Large datasets and model artifacts
+Dataset/*.zip
+*.pth
+*.onnx
+*.trt

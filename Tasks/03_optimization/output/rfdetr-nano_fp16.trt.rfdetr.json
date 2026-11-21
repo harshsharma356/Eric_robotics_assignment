@@ -1,0 +1,58 @@
+{
+  "artifact_sha256": "6116847cd53e001816d37430dae16637aa76b13583d9f2ffa7742d7d7e833a83",
+  "metadata": {
+    "schema_version": 1,
+    "producer_version": "1.12.1",
+    "format": "tensorrt",
+    "task": "detect",
+    "variant": "rfdetr-nano",
+    "backend": null,
+    "input_shape": [
+      1,
+      3,
+      384,
+      384
+    ],
+    "input_layout": "NCHW",
+    "input_dtype": "float32",
+    "input_name": "input",
+    "max_batch_size": null,
+    "outputs": {
+      "pred_boxes": "dets",
+      "pred_logits": "labels"
+    },
+    "means": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "stds": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "pixel_scale": 0.00392156862745098,
+    "channel_order": "RGB",
+    "resize_interpolation": "bilinear",
+    "resize_antialias": false,
+    "class_names": [
+      "cone",
+      "barrier",
+      "stop_sign"
+    ],
+    "class_id_to_name": {
+      "0": "cone",
+      "1": "barrier",
+      "2": "stop_sign"
+    },
+    "num_classes": 3,
+    "num_select": 300,
+    "selection_policy": "all_logits",
+    "box_format": "cxcywh_normalized",
+    "num_keypoints_per_class": [],
+    "trace_alpha": 0.2,
+    "upsample_masks_to_image_size": true,
+    "patch_size": 16,
+    "num_windows": 2
+  }
+}

@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 21
+names: ['doNotEnter', 'noLeftTurn', 'noRightTurn', 'pedestrianCrossing', 'speedLimit15', 'speedLimit20', 'speedLimit25', 'speedLimit30', 'speedLimit35', 'speedLimit40', 'speedLimit45', 'speedLimit50', 'speedLimit55', 'speedLimit60', 'speedLimit65', 'speedLimit70', 'speedLimit75', 'speedLimit80', 'speedLimit85', 'stop', 'yield']
+
+roboflow:
+  workspace: day3-class-activity
+  project: us-traffic-signs-idqvf
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/day3-class-activity/us-traffic-signs-idqvf/dataset/1
