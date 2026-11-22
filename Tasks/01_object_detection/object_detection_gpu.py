@@ -31,6 +31,63 @@ cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 fps = 0
 prev_time = time.time()
 
+# ================= INFERENCE BENCHMARK =================
+
+print("\n[INFO] Starting GPU inference benchmark...")
+
+# Capture one frame for benchmarking
+ret, benchmark_frame = cap.read()
+
+if not ret:
+    raise RuntimeError("Failed to capture benchmark frame")
+
+benchmark_frame_rgb = cv2.cvtColor(
+    benchmark_frame,
+    cv2.COLOR_BGR2RGB
+)
+
+# Warm-up runs
+print("[INFO] Performing 20 warm-up runs...")
+
+for _ in range(20):
+    model.predict(
+        benchmark_frame_rgb,
+        threshold=CONFIDENCE_THRESHOLD
+    )
+
+# Actual benchmark
+print("[INFO] Performing 100 benchmark runs...")
+
+inference_times = []
+
+for _ in range(100):
+
+    start_time = time.perf_counter()
+
+    model.predict(
+        benchmark_frame_rgb,
+        threshold=CONFIDENCE_THRESHOLD
+    )
+
+    end_time = time.perf_counter()
+
+    inference_times.append(end_time - start_time)
+
+# Calculate results
+average_latency = (sum(inference_times) / len(inference_times)) * 1000
+inference_fps = 1000 / average_latency
+
+sorted_times = sorted(inference_times)
+median_latency = sorted_times[len(sorted_times) // 2] * 1000
+
+print("\n========== GPU BENCHMARK RESULTS ==========")
+print(f"Average latency : {average_latency:.2f} ms")
+print(f"Median latency  : {median_latency:.2f} ms")
+print(f"Inference FPS   : {inference_fps:.2f}")
+print("=========================================\n")
+
+# =====================================================
+
 print("[INFO] GPU detection started. Press 'q' to quit.")
 
 while True:
