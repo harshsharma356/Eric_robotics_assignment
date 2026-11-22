@@ -95,7 +95,6 @@ Robotics & Artificial Intelligence Engineering Student
 - The accuracy of the distance estimation depends on camera calibration, bounding-box precision, the assumed physical height of each object, and the object's orientation relative to the camera.
 ---
 
-```markdown
 ## Task 03: Edge Optimization
 
 ### Approach
@@ -142,8 +141,6 @@ Robotics & Artificial Intelligence Engineering Student
 - The TensorRT engine achieved 7.52 ms average latency and 133.02 inference FPS, demonstrating the effectiveness of reduced-precision inference and hardware-specific engine optimization for GPU deployment.
 - ONNX INT8 provided a measurable improvement for CPU-based deployment, while TensorRT FP16 delivered the highest inference throughput among the evaluated configurations.
 - These optimizations demonstrate the potential of deploying the trained object detection model on resource-constrained and edge-computing platforms while improving inference speed.
-
-```
 
 ---
 
