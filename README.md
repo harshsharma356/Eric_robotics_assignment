@@ -19,24 +19,48 @@ Robotics & Artificial Intelligence Engineering Student
 
 ## Task 01: Object Detection
 
-- **Model Used:** RF-DETR Nano
-- **Dataset:** Merged NuImages 5k and US Traffic Signs dataset
-- **Classes:** Cone, Barrier, Stop Sign
+### Approach
+- Sourced the NuImages 5k and US Traffic Signs datasets from Roboflow Universe.
+- Merged the datasets and created a custom dataset tailored to the requirements of this assignment.
+- Selected **RF-DETR Nano**, a lightweight object detection model based on the Transformer architecture (Vision Transformer-based detection approach).
+- Trained the model using transfer learning on the custom dataset to detect the following classes:
+  - Cone
+  - Barrier
+  - Stop Sign
+
+### Dataset Details
+
+| Parameter | Value |
+|---|---|
+| Source | Roboflow Universe |
+| Datasets Used | NuImages 5k, US Traffic Signs |
+| Dataset Type | Custom merged dataset |
+| Training Images | 3,407 |
+| Validation Images | 652 |
+| Test Images | 446 |
+| Total Images | 4,505 |
+| Total Annotations | 14,832 |
+| Classes | Cone, Barrier, Stop Sign |
 
 ### Model Performance
 
 | Metric | Result |
 |---|---|
-| mAP@50 | XX% |
-| mAP@50–95 | XX% |
-| mAP@75 | XX% |
-| Precision | XX% |
-| Recall | XX% |
-| F1-Score | XX% |
+| Model | RF-DETR Nano |
+| mAP@50 | 67.21% |
+| mAP@50–95 | 45.21% |
+| mAP@75 | 47.01% |
+| Precision | 77.40% |
+| Recall | 64.91% |
+| F1-Score | 70.13% |
+| mAR | 54.37% |
+| Training Epochs | 300 |
 
-### Observations
-- [Add observations regarding detection accuracy, performance, and limitations.]
-- [Mention any challenges encountered during training or inference.]
+### Conclusion
+- Created a custom object detection dataset by merging NuImages 5k and US Traffic Signs datasets obtained from Roboflow Universe, adapting the data to the assignment's target classes.
+- Trained RF-DETR Nano using transfer learning for detection of cones, barriers, and stop signs.
+- The model achieved an mAP@50 of 67.21% and precision of 77.40%, demonstrating its ability to detect the target objects in the test data.
+- The achieved recall of 64.91% indicates scope for further improvement in detecting all instances, particularly under challenging conditions such as occlusion, varying lighting, and small object sizes.
 
 ---
 
