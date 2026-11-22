@@ -66,21 +66,33 @@ Robotics & Artificial Intelligence Engineering Student
 
 ## Task 02: Distance Estimation
 
-- **Method Used:** Monocular distance estimation using the pinhole camera model
-- **Formula:** `Distance = (Focal Length × Actual Object Height) / Pixel Height`
+### Approach
+- Calibrated the camera to determine its focal length in pixels.
+- Used a cone as the reference object for calibration. The cone's physical height was measured from an image displayed on my phone, resulting in a relatively small reference height. This was sufficient for the initial calibration procedure.
+- Applied the monocular distance estimation formula based on the pinhole camera model:
 
-### Results
+  $$Distance = \frac{Focal\ Length \times Actual\ Object\ Height}{Pixel\ Height}$$
 
-| Object Class | Actual Height | Estimated Distance | Ground Truth Distance | Error |
-|---|---|---|---|---|
-| Cone | XX cm | XX cm | XX cm | XX cm |
-| Barrier | XX cm | XX cm | XX cm | XX cm |
-| Stop Sign | XX cm | XX cm | XX cm | XX cm |
+- Calculated the focal length in pixels using the known reference distance, the cone's actual height, and its pixel height in the image.
+- Incorporated the calibrated focal length into the distance estimation implementation.
+- Used the average physical heights of the cone, barrier, and stop sign as reference dimensions for their respective distance calculations.
+- Estimated the distance of each detected object and displayed the result in centimeters (cm), alongside the detected bounding box.
 
-### Observations
-- [Mention the accuracy of distance estimation.]
-- [Mention the effect of object size, bounding box accuracy, and camera calibration.]
+### Methodology
 
+1. Captured an image of the reference cone at a known distance.
+2. Measured the cone's physical height using the image displayed on a phone for calibration.
+3. Obtained the cone's pixel height from its bounding box in the captured image.
+4. Calculated the camera's focal length in pixels using the calibration formula.
+5. Integrated the calculated focal length into the object detection and distance estimation pipeline.
+6. Used class-specific average heights to estimate the distance of cones, barriers, and stop signs.
+
+### Conclusion
+- Calibrated the camera using a cone as a reference object to obtain the focal length in pixels.
+- Implemented monocular distance estimation using the pinhole camera model.
+- Incorporated class-specific average object heights to estimate the distances of cones, barriers, and stop signs.
+- Displayed the estimated distance in centimeters alongside object detection results, integrating object detection and distance estimation into a unified pipeline.
+- The accuracy of the distance estimation depends on camera calibration, bounding-box precision, the assumed physical height of each object, and the object's orientation relative to the camera.
 ---
 
 ## Task 03: Edge Optimization
