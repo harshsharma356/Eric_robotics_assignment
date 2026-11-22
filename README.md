@@ -95,30 +95,55 @@ Robotics & Artificial Intelligence Engineering Student
 - The accuracy of the distance estimation depends on camera calibration, bounding-box precision, the assumed physical height of each object, and the object's orientation relative to the camera.
 ---
 
+```markdown
 ## Task 03: Edge Optimization
+
+### Approach
+
+- Evaluated the trained RF-DETR Nano model on both CPU and GPU using the original PyTorch implementation to establish baseline performance.
+- Exported the trained model to ONNX format for CPU inference and applied INT8 quantization to reduce model precision, computational overhead, and memory requirements.
+- Used INT8 quantization for CPU deployment to reduce the computational cost of inference and potentially improve throughput on CPU hardware, where lower-precision integer operations can be more efficient than floating-point operations.
+- Optimized GPU inference by exporting the model to TensorRT, using FP16 precision to leverage GPU-accelerated half-precision computation and TensorRT's engine-level optimizations, including graph optimization, kernel selection, and execution scheduling.
+- Benchmarked each implementation using 20 warm-up iterations followed by 100 timed inference runs.
+- Evaluated performance using average latency, median latency, and inference FPS.
 
 ### Benchmark Results
 
-| Model / Backend | Precision | Device | Avg. Latency (ms) | Median Latency (ms) | Inference FPS |
-|---|---|---|---|---|---|
-| PyTorch | FP32 | CPU | XX | XX | XX |
-| ONNX Runtime | FP32 | CPU | XX | XX | XX |
-| PyTorch | FP32/FP16 | GPU | XX | XX | XX |
-| TensorRT | FP16 | GPU | XX | XX | XX |
-| ONNX Runtime | INT8 | CPU | XX | XX | XX |
+| Model / Backend | Device | Precision | Average Latency (ms) | Median Latency (ms) | Inference FPS |
+|---|---|---|---:|---:|---:|
+| RF-DETR (PyTorch) | CPU | FP32 | 96.29 | 95.63 | 10.39 |
+| RF-DETR (ONNX Runtime) | CPU | INT8 | 77.87 | 78.79 | 12.84 |
+| RF-DETR (PyTorch) | GPU | FP32 | 23.26 | 15.37 | 43.00 |
+| RF-DETR (TensorRT) | GPU | FP16 | 7.52 | 4.69 | 133.02 |
 
-### Optimization Comparison
+### Performance Comparison
 
-- **Best Performing Backend:** [Backend]
-- **Speedup Compared to Baseline:** XX×
-- **Latency Reduction:** XX%
-- **FPS Improvement:** XX%
+#### CPU Optimization: PyTorch vs ONNX INT8
 
-### Observations
-- [Compare CPU and GPU performance.]
-- [Discuss the effect of quantization and inference optimization.]
-- [Mention accuracy-performance trade-offs, if any.]
-- [Highlight the most suitable deployment configuration.]
+| Metric | PyTorch CPU | ONNX INT8 CPU | Improvement |
+|---|---:|---:|---:|
+| Average Latency | 96.29 ms | 77.87 ms | 19.15% reduction |
+| Median Latency | 95.63 ms | 78.79 ms | 17.61% reduction |
+| Inference FPS | 10.39 | 12.84 | 23.58% increase |
+
+#### GPU Optimization: PyTorch vs TensorRT FP16
+
+| Metric | PyTorch GPU | TensorRT FP16 GPU | Improvement |
+|---|---:|---:|---:|
+| Average Latency | 23.26 ms | 7.52 ms | 67.67% reduction |
+| Median Latency | 15.37 ms | 4.69 ms | 69.49% reduction |
+| Inference FPS | 43.00 | 133.02 | 3.09× speedup |
+
+### Conclusion
+
+- INT8 quantization combined with ONNX Runtime improved CPU inference performance, reducing average latency from 96.29 ms to 77.87 ms and increasing inference throughput from 10.39 FPS to 12.84 FPS.
+- INT8 quantization reduces the numerical precision and storage requirements of model weights and, where supported, intermediate computations. This can reduce computational cost and improve CPU inference efficiency.
+- TensorRT FP16 optimization significantly improved GPU inference performance, reducing average latency by 67.67% compared with the measured PyTorch GPU baseline.
+- The TensorRT engine achieved 7.52 ms average latency and 133.02 inference FPS, demonstrating the effectiveness of reduced-precision inference and hardware-specific engine optimization for GPU deployment.
+- ONNX INT8 provided a measurable improvement for CPU-based deployment, while TensorRT FP16 delivered the highest inference throughput among the evaluated configurations.
+- These optimizations demonstrate the potential of deploying the trained object detection model on resource-constrained and edge-computing platforms while improving inference speed.
+
+```
 
 ---
 
