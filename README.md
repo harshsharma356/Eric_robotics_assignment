@@ -146,7 +146,13 @@ Robotics & Artificial Intelligence Engineering Student
 
 ## Overall Conclusion
 
-- **Detection:** [Summary of detection performance.]
-- **Distance Estimation:** [Summary of distance estimation performance.]
-- **Edge Deployment:** [Summary of optimization results and selected deployment backend.]
-- **Final Deployment Recommendation:** [Recommended model/backend for real-time deployment.]
+The assignment involved developing an object detection and distance estimation pipeline, followed by optimizing inference performance for CPU and GPU deployment.
+
+- **Object Detection:** Created a custom dataset by merging NuImages 5k and US Traffic Signs datasets from Roboflow Universe and trained RF-DETR Nano using transfer learning. The model achieved an mAP@50 of 67.21% across the target classes: cone, barrier, and stop sign.
+- **Distance Estimation:** Calibrated the camera to determine its focal length in pixels and implemented monocular distance estimation using the pinhole camera model. Estimated distances for detected objects are displayed in centimeters using class-specific average object heights.
+- **CPU Optimization:** Exported the model to ONNX and applied INT8 quantization, reducing average inference latency by 19.15% and improving throughput by 23.58% over the measured PyTorch CPU baseline.
+- **GPU Optimization:** Optimized GPU inference using TensorRT FP16, achieving 7.52 ms average latency and 133.02 FPS, representing a 3.09× speedup over the measured PyTorch GPU baseline.
+
+Overall, the project demonstrates an end-to-end computer vision pipeline covering custom dataset preparation, Transformer-based object detection, monocular distance estimation, model quantization, and hardware-specific inference optimization. The optimized implementations improve inference performance and provide deployment options for both CPU-based and GPU-accelerated edge computing environments.
+```
+
