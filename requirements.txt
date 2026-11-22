@@ -1,0 +1,19 @@
+# RF-DETR with TensorRT and ONNX export/inference support
+rfdetr[tensorrt,onnx]
+
+# Computer Vision
+opencv-python
+
+# Numerical Computing
+numpy
+scipy
+
+# Image Processing
+Pillow
+
+# Visualization
+matplotlib
+
+# Dataset and Detection Utilities
+pycocotools
+supervision
