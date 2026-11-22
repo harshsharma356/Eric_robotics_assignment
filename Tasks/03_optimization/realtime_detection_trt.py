@@ -2,7 +2,7 @@ import cv2
 import time
 from rfdetr import RFDETRInference
 
-TRT_MODEL = "/home/galdrux/internship_projs/eric_robotics/technical_assignnment_ericRobotics/Tasks/03_optimization/output/rfdetr-nano_fp16.trt"
+TRT_MODEL = "/home/galdrux/internship_projs/eric_robotics/technical_assignnment_ericRobotics/Tasks/03_optimization/trt/rfdetr-nano_fp16.trt"
 CAMERA_INDEX = 0
 CONFIDENCE_THRESHOLD = 0.65
 

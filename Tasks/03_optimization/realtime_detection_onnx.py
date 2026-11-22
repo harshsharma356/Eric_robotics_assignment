@@ -2,12 +2,12 @@ import cv2
 import time
 from rfdetr import RFDETRInference
 
-ONNX_MODEL = "/home/galdrux/internship_projs/eric_robotics/technical_assignnment_ericRobotics/Tasks/03_optimization/output/rfdetr-nano.onnx"
+ONNX_MODEL = "/home/galdrux/internship_projs/eric_robotics/technical_assignnment_ericRobotics/Tasks/03_optimization/onnx/rfdetr-nano.onnx"
 CAMERA_INDEX = 0
 CONFIDENCE_THRESHOLD = 0.65
 
 print("[INFO] Loading ONNX model...")
-model = RFDETRInference(ONNX_MODEL)
+model = RFDETRInference(ONNX_MODEL, device="cpu")
 
 print("[INFO] ONNX model loaded!")
 print("[INFO] Classes:", model.class_names)
